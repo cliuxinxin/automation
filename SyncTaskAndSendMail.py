@@ -77,8 +77,8 @@ if len(rows):
         smtpObj.connect(mail_host, 25)    
         smtpObj.login(mail_user,mail_pass)  
         smtpObj.sendmail(sender, receivers, message.as_string())
-        print( "邮件发送成功")
+        print( "Email has sended")
     except smtplib.SMTPException:
-        print ("Error: 无法发送邮件")
+        print ("Error: Can't send email")
 else:
-    print("没有更新")
+    print("no update and not send email")
