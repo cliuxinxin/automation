@@ -1,3 +1,5 @@
 ConfigParser
 requests
 beautifulsoup4
+smtplib
+email
