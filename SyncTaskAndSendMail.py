@@ -33,7 +33,7 @@ for row in rows:
     insert_sql = "INSERT or ignore INTO tasks (type,type_id)  VALUES ('gaoqing','%s' )"%(type_id)
     conn.execute(insert_sql)
     gaoqing_id = row[0]
-    update_sql = "UPDATE gaoqing set is_coped = '完成' where ID='%s'"%(gaoqing_id)
+    update_sql = "UPDATE gaoqing set is_coped = 'complied' where ID='%s'"%(gaoqing_id)
     conn.execute(update_sql)
 
 conn.commit()
@@ -50,7 +50,7 @@ for row in rows:
     download_url = '<p><a href="%s">下载链接</a></p>'%row[3]
     msg = para+img+download_url
     msg_gaoqing += msg
-    update_sql = "UPDATE tasks set is_processed = '完成' where ID='%s'"%(row[0])
+    update_sql = "UPDATE tasks set is_processed = 'complied' where ID='%s'"%(row[0])
     conn.execute(update_sql)
 conn.commit()
 conn.close()
