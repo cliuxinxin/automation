@@ -15,28 +15,34 @@ for elem in elems:
     item['url'] = elem['href']
     item['img_url'] = elem.contents[1]['src']
     list.append(item)
+print("Geted the page")
 
 # print(list)
 
 #  save to the database
 # Title Url Imgurl downloadurl date
 conn = sqlite3.connect('main.db')
+cursor = conn.cursor()
 conn.execute('''CREATE TABLE if not exists GAOQING 
-       (ID 			  integer PRIMARY KEY autoincrement,
+       (ID        integer PRIMARY KEY autoincrement,
        TITLE           CHAR(400),
        URL            CHAR(400) UNIQUE,
-       IMG_URL		  CHAR(400),
+       IMG_URL      CHAR(400),
        DOWNLOAD_URL   CHAR(400),
-       CREATEDTIME	  TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));''')
+       CREATEDTIME    TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));''')
+
+rownumber = 0
 
 for item in list:
     keys = str(item.keys())[9:].replace('[', '').replace(']', '')
     vals = str(item.values())[11:].replace('[', '').replace(']', '')
-    conn.execute('INSERT or IGNORE INTO gaoqing %s VALUES %s' % (keys, vals))
+    cursor.execute('INSERT or IGNORE INTO gaoqing %s VALUES %s' % (keys, vals))
+    rownumber += cursor.rowcount
 
 conn.commit()
-
 conn.close()
+
+print("%s rows has inserted"%rownumber)
 
 #data = conn.execute("select * from gaoqing")
 #rows =data.fetchall()
