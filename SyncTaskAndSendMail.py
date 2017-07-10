@@ -39,8 +39,8 @@ for row in rows:
 conn.commit()
 
 # Construct the content
-#  where t.is_processed is null test email
-data = conn.execute("select t.id,g.title,g.img_url,g.download_url from tasks t left join gaoqing g on t.type_id=g.id")
+#   test email
+data = conn.execute("select t.id,g.title,g.img_url,g.download_url from tasks t left join gaoqing g on t.type_id=g.id where t.is_processed is null")
 rows = data.fetchall()
 msg_gaoqing = ""
 for row in rows:
