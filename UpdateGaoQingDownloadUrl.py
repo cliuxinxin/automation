@@ -16,7 +16,7 @@ for row in rows:
     gaoqing_id = row[0]
     sql = "UPDATE gaoqing set download_url = '%s' where ID='%s'"%(download_url,gaoqing_id)
     conn.execute(sql)
-    print(row[1],"完成")
+    print(row[1],"complete")
 
 conn.commit()
 
