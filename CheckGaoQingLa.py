@@ -3,6 +3,10 @@
 import requests
 import bs4
 import sqlite3
+from datetime import datetime
+
+# for log
+print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 # check the website
 res = requests.get('http://gaoqing.la/')

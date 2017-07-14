@@ -4,6 +4,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 import configparser
+from datetime import datetime
+
+# for log
+print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 conn = sqlite3.connect('main.db')
 config = configparser.ConfigParser()

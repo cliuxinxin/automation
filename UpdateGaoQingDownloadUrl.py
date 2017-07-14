@@ -1,6 +1,10 @@
 import sqlite3
 import requests
 import bs4
+from datetime import datetime
+
+# for log
+print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 conn = sqlite3.connect('main.db')
 data = conn.execute("select * from gaoqing where download_url is null")
