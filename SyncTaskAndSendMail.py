@@ -42,6 +42,7 @@ for row in rows:
     conn.execute(update_sql)
 
 conn.commit()
+print("All record copy to the task")
 
 # Construct the content
 #   test email
@@ -59,6 +60,7 @@ for row in rows:
     conn.execute(update_sql)
 conn.commit()
 conn.close()
+print("All task has processed")
 
 if len(rows):
 # Send the mail
