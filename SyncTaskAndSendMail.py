@@ -14,21 +14,24 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 email_password = config['MAIL']['password']
 
+print("prepare complish")
+
+
 # Task table
-conn.execute('''CREATE TABLE if not exists tasks 
-       (ID         integer PRIMARY KEY autoincrement,
-       type           CHAR(20),
-       type_id       CHAR(20),
-       is_processed CHAR(10),
-       CREATEDTIME  TimeStamp NOT NULL DEFAULT (datetime('now','localtime')),       
-       UNIQUE (type,type_id)
-       );''')
+# conn.execute('''CREATE TABLE if not exists tasks 
+#        (ID         integer PRIMARY KEY autoincrement,
+#        type           CHAR(20),
+#        type_id       CHAR(20),
+#        is_processed CHAR(10),
+#        CREATEDTIME  TimeStamp NOT NULL DEFAULT (datetime('now','localtime')),       
+#        UNIQUE (type,type_id)
+#        );''')
 
 # Gaoqing talble alter
-try:
-    conn.execute('ALTER TABLE gaoqing ADD COLUMN is_coped char(10);')
-except:
-    pass # handle the error
+# try:
+#     conn.execute('ALTER TABLE gaoqing ADD COLUMN is_coped char(10);')
+# except:
+#     pass # handle the error
 
 # Update the task from gaoqing
 data = conn.execute("select * from gaoqing where is_coped is null")
