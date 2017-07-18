@@ -27,14 +27,16 @@ print("Geted the page")
 # Title Url Imgurl downloadurl date
 conn = sqlite3.connect('main.db')
 cursor = conn.cursor()
-conn.execute('''CREATE TABLE if not exists GAOQING 
-       (ID        integer PRIMARY KEY autoincrement,
-       TITLE           CHAR(400),
-       URL            CHAR(400) UNIQUE,
-       IMG_URL      CHAR(400),
-       DOWNLOAD_URL   CHAR(400),
-       CREATEDTIME    TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));''')
+# Table has built
+# conn.execute('''CREATE TABLE if not exists GAOQING 
+#        (ID        integer PRIMARY KEY autoincrement,
+#        TITLE           CHAR(400),
+#        URL            CHAR(400) UNIQUE,
+#        IMG_URL      CHAR(400),
+#        DOWNLOAD_URL   CHAR(400),
+#        CREATEDTIME    TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));''')
 
+# insert the movie info
 rownumber = 0
 
 for item in list:
