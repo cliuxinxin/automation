@@ -76,9 +76,9 @@ if len(rows):
 
     mail_msg = """
     """ + msg_gaoqing
-    message = MIMEText(mail_msg, 'html')
-    message['From'] = Header("自动系统")
-    message['To'] =  Header("测试")
+    message = MIMEText(mail_msg, 'html', 'utf-8')
+    message['From'] = Header("自动系统", 'utf-8')
+    message['To'] =  Header("测试", 'utf-8')
      
     subject = '高清电影'
     message['Subject'] = Header(subject, 'utf-8')
