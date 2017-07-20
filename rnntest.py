@@ -1,9 +1,10 @@
 # encoding: utf-8
 
 import numpy as np
+import codecs
 
 
-data = open('kafka.txt','r').read()
+data = codecs.open('kafka.txt','r','utf-8').read()
 chars = list(set(data))
 data_size , chars_size = len(data),len(chars)
 char_to_ix = {ch:i for i,ch in enumerate(chars)}
