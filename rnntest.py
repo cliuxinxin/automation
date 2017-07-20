@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 import numpy as np
 
 
@@ -129,7 +131,7 @@ n, p = 0, 0
 mWxh, mWhh, mWhy = np.zeros_like(Wxh), np.zeros_like(Whh), np.zeros_like(Why)
 mbh, mby = np.zeros_like(bh), np.zeros_like(by) # memory variables for Adagrad                                                                                                                
 smooth_loss = -np.log(1.0/chars_size)*seq_length # loss at iteration 0                                                                                                                        
-while n<=1000*100:
+while n<=10000*1000:
   # prepare inputs (we're sweeping from left to right in steps seq_length long)
   # check "How to feed the loss function to see how this part works
   if p+seq_length+1 >= len(data) or n == 0:
