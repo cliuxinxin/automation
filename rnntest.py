@@ -131,8 +131,11 @@ print("targets", targets)
 n, p = 0, 0
 mWxh, mWhh, mWhy = np.zeros_like(Wxh), np.zeros_like(Whh), np.zeros_like(Why)
 mbh, mby = np.zeros_like(bh), np.zeros_like(by) # memory variables for Adagrad                                                                                                                
-smooth_loss = -np.log(1.0/chars_size)*seq_length # loss at iteration 0                                                                                                                        
-while n<=10000*1000:
+smooth_loss = -np.log(1.0/chars_size)*seq_length # loss at iteration 0
+
+smallest_loss = 50    
+
+while 1:
   # prepare inputs (we're sweeping from left to right in steps seq_length long)
   # check "How to feed the loss function to see how this part works
   if p+seq_length+1 >= len(data) or n == 0:
@@ -145,9 +148,15 @@ while n<=10000*1000:
   loss, dWxh, dWhh, dWhy, dbh, dby, hprev = lossFun(inputs, targets, hprev)
   smooth_loss = smooth_loss * 0.999 + loss * 0.001
 
+  if smallest_loss > smooth_loss:
+    with open('rnntrain.txt', 'wb') as abc:
+      np.savetxt(abc, hprev, delimiter=",")
+      smallest_loss = smooth_loss
+
+
   # sample from the model now and then                                                                                                                                                        
   if n % 1000 == 0:
-    print( 'iter %d, loss: %f' % (n, smooth_loss)) # print progress
+    print( 'iter %d, loss: %f , smallest loss: %f'% (n, smooth_loss,smallest_loss)) # print progress
     sample(hprev, inputs[0], 200)
 
   # perform parameter update with Adagrad                                                                                                                                                     
