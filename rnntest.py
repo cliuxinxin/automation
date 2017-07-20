@@ -117,7 +117,7 @@ def sample(h, seed_ix, n):
     ixes.append(ix)
 
   txt = ''.join(ix_to_char[ix] for ix in ixes)
-  print ('----\n %s \n----' %txt)
+  print ('----\n %s \n----' %txt.encode('ascii', 'ignore').decode('ascii'))
 hprev = np.zeros((hidden_size,1)) # reset RNN memory  
 #predict the 200 next characters given 'a'
 sample(hprev,char_to_ix['a'],200)
