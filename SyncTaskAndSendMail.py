@@ -6,7 +6,7 @@ from email.header import Header
 import configparser
 from datetime import datetime
 
-# for log
+# log time
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 conn = sqlite3.connect('main.db')

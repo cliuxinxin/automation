@@ -3,7 +3,7 @@ import requests
 import bs4
 from datetime import datetime
 
-# for log
+# log time
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 conn = sqlite3.connect('main.db')
@@ -27,5 +27,5 @@ for row in rows:
 conn.commit()
 conn.close()
 
-print("update %s rows"%rownumber)
+print("%s items download link had updated"%rownumber)
 
