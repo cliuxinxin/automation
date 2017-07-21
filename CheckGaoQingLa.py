@@ -19,7 +19,7 @@ for elem in elems:
     item['url'] = elem['href']
     item['img_url'] = elem.contents[1]['src']
     list.append(item)
-print("Geted the page")
+print("Geted the index")
 
 # print(list)
 
