@@ -1,14 +1,13 @@
 # check the http://gaoqing.la/ have new episode
-
 import requests
 import bs4
 import sqlite3
 from datetime import datetime
 
-# for log
+# log time
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-# check the website
+# get the items from index
 res = requests.get('http://gaoqing.la/')
 soup = bs4.BeautifulSoup(res.text,"html.parser")
 elems = soup.select('#post_container > li > div > div.thumbnail > a')
@@ -19,12 +18,13 @@ for elem in elems:
     item['url'] = elem['href']
     item['img_url'] = elem.contents[1]['src']
     list.append(item)
-print("Geted the page")
+print("Geted the items from the index")
 
+# debug
 # print(list)
 
-#  save to the database
-# Title Url Imgurl downloadurl date
+# save to the database
+# gaoqing table structure : Title Url Imgurl downloadurl date
 conn = sqlite3.connect('main.db')
 cursor = conn.cursor()
 # Table has built
@@ -48,8 +48,9 @@ for item in list:
 conn.commit()
 conn.close()
 
-print("%s rows has inserted"%rownumber)
+print("%s new items had fouded"%rownumber)
 
-#data = conn.execute("select * from gaoqing")
-#rows =data.fetchall()
-#print(rows)
+# debug
+# data = conn.execute("select * from gaoqing")
+# rows =data.fetchall()
+# print(rows)

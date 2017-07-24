@@ -6,15 +6,13 @@ from email.header import Header
 import configparser
 from datetime import datetime
 
-# for log
+# log time
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 conn = sqlite3.connect('main.db')
 config = configparser.ConfigParser()
 config.read('config.ini')
 email_password = config['MAIL']['password']
-
-print("prepare complish")
 
 
 # Task table
@@ -45,11 +43,11 @@ for row in rows:
     conn.execute(update_sql)
 
 conn.commit()
-print("All record copy to the task")
 
 # Construct the content
 #   test email
-data = conn.execute("select t.id,g.title,g.img_url,g.download_url from tasks t left join gaoqing g on t.type_id=g.id where t.is_processed is null")
+
+data = conn.execute("select t.id,g.title,g.img_url,g.download_url from tasks t left join gaoqing g on t.type_id=g.id  where t.is_processed is null order by g.createdtime desc")
 rows = data.fetchall()
 msg_gaoqing = ""
 for row in rows:
@@ -77,8 +75,8 @@ if len(rows):
     mail_msg = """
     """ + msg_gaoqing
     message = MIMEText(mail_msg, 'html', 'utf-8')
-    message['From'] = Header("自动系统", 'utf-8')
-    message['To'] =  Header("测试", 'utf-8')
+    # message['From'] = Header("Automation Robot", 'utf-8')
+    message['To'] =  'cliuxinxin@163.com'
      
     subject = '高清电影'
     message['Subject'] = Header(subject, 'utf-8')
